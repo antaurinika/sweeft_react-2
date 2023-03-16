@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from "react";
+import React, { useEffect } from "react";
 import Card from "./Card";
 import useFetch from "../hooks/useFetch";
 import { useState } from "react";
@@ -12,27 +12,20 @@ export default function List() {
     `http://sweeftdigital-intern.eu-central-1.elasticbeanstalk.com/user/${pageNumber}/${size}`
   );
 
-  const observer = useRef();
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
 
-  const lastUserElement = useCallback(
-    (node) => {
-      if (loading) return;
-      if (observer.current) observer.current.disconnect();
-      let count = 0;
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
-      observer.current = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting) {
-          count = count + 1;
-          if (count > 1) {
-            setPageNumber((prev) => prev + 1);
-          }
-        }
-      });
-      if (node) observer.current.observe(node);
-    },
-
-    [loading]
-  );
+  const handleScroll = async () => {
+    if (
+      window.innerHeight + document.documentElement.scrollTop + 1 >=
+      document.documentElement.scrollHeight
+    ) {
+      setPageNumber((prev) => prev + 1);
+    }
+  };
   const generateUsers = () => {
     return data?.map((user, index) => {
       return (
@@ -49,11 +42,5 @@ export default function List() {
     });
   };
 
-  return (
-    <div className={ListCss.list}>
-      {generateUsers()}
-
-      <div className="invisible_footer" ref={lastUserElement}></div>
-    </div>
-  );
+  return <div className={ListCss.list}>{generateUsers()}</div>;
 }

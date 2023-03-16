@@ -1,14 +1,6 @@
 import React from "react";
 
-export default function Card({
-  imageUrl,
-  prefix,
-  title,
-  name,
-  lastname,
-  id,
-  lastRef,
-}) {
+export default function Card({ imageUrl, prefix, title, name, lastname, id }) {
   return (
     <div>
       <img src={`${imageUrl}?v=${id}`} alt="animal" width="300px" />
