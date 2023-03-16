@@ -1,46 +1,14 @@
-import React, { useEffect } from "react";
-import Card from "./Card";
+import React from "react";
 import useFetch from "../hooks/useFetch";
-import { useState } from "react";
 import ListCss from "../styles/List.module.css";
+import { useScroll } from "../hooks/useScroll";
+import useGenerateUsers from "../hooks/useGenerateUsers";
 
 export default function List() {
-  const [size, setSize] = useState(12);
-  const [pageNumber, setPageNumber] = useState(1);
-
+  const { size, pageNumber } = useScroll();
   const { data, error, loading } = useFetch(
     `http://sweeftdigital-intern.eu-central-1.elasticbeanstalk.com/user/${pageNumber}/${size}`
   );
 
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const handleScroll = async () => {
-    if (
-      window.innerHeight + document.documentElement.scrollTop + 1 >=
-      document.documentElement.scrollHeight
-    ) {
-      setPageNumber((prev) => prev + 1);
-    }
-  };
-  const generateUsers = () => {
-    return data?.map((user, index) => {
-      return (
-        <Card
-          key={index}
-          id={user.id}
-          prefix={user.prefix}
-          name={user.name}
-          lastname={user.lastName}
-          title={user.title}
-          imageUrl={user.imageUrl}
-        />
-      );
-    });
-  };
-
-  return <div className={ListCss.list}>{generateUsers()}</div>;
+  return <div className={ListCss.list}>{useGenerateUsers(data)}</div>;
 }
