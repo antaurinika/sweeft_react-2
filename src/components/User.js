@@ -21,7 +21,7 @@ export default function User() {
       <div className={UserCss.userData}>
         <img
           className={UserCss.userImage}
-          src={singleUser?.data.imageUrl}
+          src={`${singleUser?.data.imageUrl}?v=${id}`}
           width="300px"
           alt="user"
         />

@@ -18,10 +18,18 @@
 }
 
 @media screen and (max-width: 990px) {
+  .list {
+    margin: 1rem;
+  }
   .card {
     width: 48%;
   }
   .card > * {
     width: 100%;
+  }
+}
+@media screen and (max-width: 548px) {
+  .card {
+    width: auto;
   }
 }
