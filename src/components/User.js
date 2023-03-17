@@ -13,6 +13,9 @@ export default function User() {
   );
   useEffect(() => {
     setNameHistory((prev) => [...prev, singleUser?.data.id && singleUser.data]);
+    window.onpopstate = () => {
+      setNameHistory((prev) => prev.slice(0, -1));
+    };
   }, [id]);
 
   return (
