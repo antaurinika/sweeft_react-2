@@ -3,4 +3,25 @@
   flex-wrap: wrap;
   gap: 1rem;
   justify-content: center;
+  margin: 1rem 8rem;
+}
+.listImage {
+  width: 100%;
+}
+.card {
+  width: 23%;
+  border: 1px solid #ccc;
+}
+.name,
+.title {
+  margin: 5px 10px;
+}
+
+@media screen and (max-width: 990px) {
+  .card {
+    width: 48%;
+  }
+  .card > * {
+    width: 100%;
+  }
 }

@@ -1,6 +1,28 @@
+.container {
+  margin: -1rem 8rem;
+  padding: 3rem 0;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+}
 .userData {
   display: flex;
   justify-content: center;
+  width: 100%;
+  align-items: center;
+}
+.friendsList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+.arrow {
+  margin: 0 5px;
+}
+
+.userImage {
+  width: 18vw;
+  height: 200px;
 }
 
 .Info {
@@ -8,8 +30,59 @@
   margin-left: 1rem;
 }
 .Address {
-  width: 10vw;
+  width: 15vw;
 }
 .Name_Title {
   margin-bottom: 2rem;
+}
+.history {
+  display: flex;
+  padding-left: 2vw;
+  margin: 2rem 0;
+  flex-wrap: wrap;
+}
+.friendsLabel {
+  padding-left: 2vw;
+}
+@media screen and (max-width: 1268px) {
+  .container {
+    margin: -1rem 0;
+    border: none;
+  }
+  .Info {
+    width: 50vw;
+  }
+  .Info,
+  .Address {
+    font-size: 14px;
+  }
+
+  .friendsLabel,
+  .history {
+    padding-left: 2vw;
+  }
+}
+@media screen and (max-width: 990px) {
+  .container {
+    padding: 0;
+  }
+  .userData {
+    flex-direction: column;
+    justify-content: center;
+  }
+  .Address {
+    max-height: 170px;
+    width: 90vw;
+    margin: 0 1rem;
+  }
+  .Info {
+    max-height: 215px;
+    margin: 0 1rem;
+    width: 90vw;
+  }
+  .userImage {
+    max-height: 200px;
+    width: 92vw;
+    margin: 1rem 1rem 0 1rem;
+  }
 }

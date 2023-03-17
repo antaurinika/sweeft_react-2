@@ -1,23 +1,33 @@
-import React from "react";
-import { useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useParams, Link } from "react-router-dom";
 import useFetchUser from "../hooks/useFetchUser";
 import UserCss from "../styles/User.module.css";
 import Friends from "./Friends";
 
 export default function User() {
   const { id } = useParams();
+  const [nameHistory, setNameHistory] = useState([]);
   const { singleUser, loading } = useFetchUser(
     `http://sweeftdigital-intern.eu-central-1.elasticbeanstalk.com/user/${id}`
   );
+  useEffect(() => {
+    setNameHistory((prev) => [...prev, singleUser?.data.id && singleUser.data]);
+  }, [id]);
 
+  // console.log(nameHistory);
   return (
-    <>
+    <div className={UserCss.container}>
       <div className={UserCss.userData}>
-        <img src={singleUser?.data.imageUrl} width="300px" alt="user" />
+        <img
+          className={UserCss.userImage}
+          src={singleUser?.data.imageUrl}
+          width="300px"
+          alt="user"
+        />
         <fieldset className={UserCss.Info}>
           <legend>Info</legend>
           <div className={UserCss.Name_Title}>
-            <div>{`${singleUser?.data.prefix} ${singleUser?.data.name} ${singleUser?.data.lastName}`}</div>
+            <strong>{`${singleUser?.data.prefix} ${singleUser?.data.name} ${singleUser?.data.lastName}`}</strong>
             <div>{singleUser?.data.title}</div>
           </div>
           <div>
@@ -56,8 +66,20 @@ export default function User() {
           </div>
         </fieldset>
       </div>
-      <h1>Friends:</h1>
-      <Friends />
-    </>
+      <div className={UserCss.history}>
+        {nameHistory.map((data, index) => (
+          <div key={index}>
+            <Link to={`/user/${data?.id}`} className={UserCss.historyLink}>
+              {data?.name && `${data.prefix} ${data.name} ${data.lastName}`}
+            </Link>
+            {data?.name && <span className={UserCss.arrow}>&gt;</span>}
+          </div>
+        ))}
+      </div>
+      <div>
+        <h1 className={UserCss.friendsLabel}>Friends:</h1>
+        <Friends />
+      </div>
+    </div>
   );
 }
