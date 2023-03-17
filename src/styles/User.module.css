@@ -44,6 +44,10 @@
 .friendsLabel {
   padding-left: 2vw;
 }
+.loader {
+  text-align: center;
+  position: relative;
+}
 @media screen and (max-width: 1268px) {
   .container {
     margin: -1rem 0;

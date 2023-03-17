@@ -3,6 +3,7 @@ import useFetch from "../hooks/useFetch";
 import ListCss from "../styles/List.module.css";
 import { useScroll } from "../hooks/useScroll";
 import useGenerateUsers from "../hooks/useGenerateUsers";
+import useLoader from "../hooks/useLoader";
 
 export default function List() {
   const { size, pageNumber } = useScroll();
@@ -10,5 +11,10 @@ export default function List() {
     `http://sweeftdigital-intern.eu-central-1.elasticbeanstalk.com/user/${pageNumber}/${size}`
   );
 
-  return <div className={ListCss.list}>{useGenerateUsers(data)}</div>;
+  return (
+    <div className={ListCss.list}>
+      {useGenerateUsers(data)}
+      {useLoader(loading)}
+    </div>
+  );
 }

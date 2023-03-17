@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import useFetchUser from "../hooks/useFetchUser";
+import useLoader from "../hooks/useLoader";
 import UserCss from "../styles/User.module.css";
 import Friends from "./Friends";
 
@@ -14,9 +15,9 @@ export default function User() {
     setNameHistory((prev) => [...prev, singleUser?.data.id && singleUser.data]);
   }, [id]);
 
-  // console.log(nameHistory);
   return (
     <div className={UserCss.container}>
+      {useLoader(loading)}
       <div className={UserCss.userData}>
         <img
           className={UserCss.userImage}
