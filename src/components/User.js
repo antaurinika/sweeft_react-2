@@ -52,7 +52,7 @@ export default function User() {
         </fieldset>
         <fieldset className={UserCss.Address}>
           <legend>Address</legend>
-          <strong>{`${singleUser?.data.company.name} ${singleUser?.data.company.name}`}</strong>
+          <strong>{`${singleUser?.data.company.name} ${singleUser?.data.company.suffix}`}</strong>
           <div>
             <u>City</u>: {singleUser?.data.address.city}
           </div>
@@ -81,7 +81,7 @@ export default function User() {
         ))}
       </div>
       <div>
-        <h1 className={UserCss.friendsLabel}>Friends:</h1>
+        <h2 className={UserCss.friendsLabel}>Friends:</h2>
         <Friends />
       </div>
     </div>

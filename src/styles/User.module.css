@@ -1,5 +1,6 @@
 .container {
-  margin: -1rem 8rem;
+  margin: 0 auto;
+  max-width: 1200px;
   padding: 3rem 0;
   border-left: 1px solid #ccc;
   border-right: 1px solid #ccc;
@@ -21,28 +22,26 @@
 }
 
 .userImage {
-  width: 18vw;
   height: 200px;
+  margin: 0 1rem;
 }
 
 .Info {
-  width: 40vw;
-  margin-left: 1rem;
+  width: 100%;
 }
 .Address {
-  width: 15vw;
+  margin: 0 1rem;
 }
 .Name_Title {
   margin-bottom: 2rem;
 }
 .history {
   display: flex;
-  padding-left: 2vw;
-  margin: 2rem 0;
+  margin: 2rem 20px;
   flex-wrap: wrap;
 }
 .friendsLabel {
-  padding-left: 2vw;
+  margin: 20px;
 }
 .loader {
   text-align: center;
@@ -56,12 +55,7 @@
   .Info {
     width: 50vw;
   }
-  .Info,
-  .Address {
-    font-size: 14px;
-  }
 
-  .friendsLabel,
   .history {
     padding-left: 2vw;
   }

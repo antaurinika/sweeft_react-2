@@ -3,7 +3,8 @@
   flex-wrap: wrap;
   gap: 1rem;
   justify-content: center;
-  margin: 1rem 8rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 .listImage {
   width: 100%;
@@ -18,9 +19,6 @@
 }
 
 @media screen and (max-width: 990px) {
-  .list {
-    margin: 1rem;
-  }
   .card {
     width: 48%;
   }
@@ -30,6 +28,6 @@
 }
 @media screen and (max-width: 548px) {
   .card {
-    width: auto;
+    width: 45%;
   }
 }
