@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-function useFetchFriends(url) {
+function useFetchFriends(url, pageNumber, id) {
   const [friends, setFriends] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    setLoading(true);
+  const fetchData = () => {
     axios
       .get(url)
       .then((response) => {
@@ -16,7 +15,18 @@ function useFetchFriends(url) {
         setLoading(false);
       })
       .catch((err) => console.log(err));
-  }, [url]);
+  };
+
+  useEffect(() => {
+    setLoading(true);
+    fetchData();
+  }, [pageNumber]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    setFriends([]);
+    fetchData();
+  }, [id]);
   return { friends, loading };
 }
 

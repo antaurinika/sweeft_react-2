@@ -11,7 +11,9 @@ function Friends() {
   const { size, pageNumber } = useScroll();
 
   const { friends, loading } = useFetchFriends(
-    `http://sweeftdigital-intern.eu-central-1.elasticbeanstalk.com/user/${id}/friends/${pageNumber}/${size}`
+    `http://sweeftdigital-intern.eu-central-1.elasticbeanstalk.com/user/${id}/friends/${pageNumber}/${size}`,
+    pageNumber,
+    id
   );
   return (
     <div className={UserCss.friendsList}>
